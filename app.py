@@ -2,6 +2,7 @@ import datetime as dt
 import numpy as np
 import pandas as pd
 import sqlalchemy
+from sqlalchemy import extract
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
@@ -72,9 +73,12 @@ def stats(start=None, end=None):
     return jsonify(temps)
  
 
+#@app.route("/api/v1.0/temperature/<m>")
+#def describe_monthly_temp(m=None):
+#    results = session.query(Measurement.date, Measurement.tobs).filter(extract('month', Measurement.date) == m).all()
+#    temps = {date: tobs for date, tobs in results}
+#    return jsonify (results)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-#
